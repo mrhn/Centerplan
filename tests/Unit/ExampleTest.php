@@ -2,18 +2,19 @@
 
 namespace Tests\Unit;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+/**
+ * @internal
+ * @coversNothing
+ */
+final class ExampleTest extends TestCase
 {
     /**
      * A basic test example.
-     *
-     * @return void
      */
-    public function testBasicTest()
+    public function test_basic_test()
     {
-        $this->assertTrue(true);
+        static::assertTrue(true);
     }
 }
