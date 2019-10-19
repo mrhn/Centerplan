@@ -54,9 +54,9 @@ jobs:
       - run: php artisan route:list
 
       # run tests with phpunit
-      - run: ./vendor/bin/phpunit
+      - run: ./vendor/bin/phpunit --coverage-html build/coverage-report
 
       - store_test_results:
-          path: tests/_output
+          path:  build/coverage-report
       - store_artifacts:
-          path: tests/_output
+          path:  build/coverage-report
