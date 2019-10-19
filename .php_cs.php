@@ -9,11 +9,16 @@ $excludeDirs = [
     'vendor/',
 ];
 
+$excludeFiles = [
+    '_ide_helper.php',
+];
+
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
     ->exclude($excludeDirs)
     ->ignoreDotFiles(true)
-    ->ignoreVCS(true);
+    ->ignoreVCS(true)
+    ->notName($excludeFiles);
 
 return PhpCsFixer\Config::create()
     ->setRiskyAllowed(true)
@@ -23,13 +28,13 @@ return PhpCsFixer\Config::create()
             '@PhpCsFixer:risky' => true,
             '@PSR1' => true,
             '@PSR2' => true,
-            'align_multiline_comment' => true,
+            'align_multiline_comment' => false,
             'blank_line_before_return' => true,
             'php_unit_test_annotation' => false,
             'php_unit_method_casing' => ['case' => 'snake_case'],
             // for larastan
             'return_assignment' => false,
-            // i do not have the time to write custom assertors
+            // i do not have the time to write custom assertions
             'php_unit_strict' => false,
         ]
     )
