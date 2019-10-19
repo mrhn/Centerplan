@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a1991acd1a251e65795b3cb8084c484a",
+    "content-hash": "f4cbb0220c06a6fd4d980ddb3ac12b86",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -679,26 +679,26 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.46",
+            "version": "1.0.57",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2"
+                "reference": "0e9db7f0b96b9f12dcf6f65bc34b72b1a30ea55a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2",
-                "reference": "f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/0e9db7f0b96b9f12dcf6f65bc34b72b1a30ea55a",
+                "reference": "0e9db7f0b96b9f12dcf6f65bc34b72b1a30ea55a",
                 "shasum": ""
             },
             "require": {
+                "ext-fileinfo": "*",
                 "php": ">=5.5.9"
             },
             "conflict": {
                 "league/flysystem-sftp": "<1.0.6"
             },
             "require-dev": {
-                "ext-fileinfo": "*",
                 "phpspec/phpspec": "^3.4",
                 "phpunit/phpunit": "^5.7.10"
             },
@@ -759,7 +759,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2018-08-22T07:45:22+00:00"
+            "time": "2019-10-16T21:01:05+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -4907,19 +4907,21 @@
         },
         {
             "name": "nunomaduro/larastan",
-            "version": "v0.3.21",
+            "version": "v0.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/larastan.git",
-                "reference": "4dca6af24373eb83aa7fcc1018495ef2680838c2"
+                "reference": "c66d4f3cfcfe0c041c40b38227de1b9a5a106f6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/4dca6af24373eb83aa7fcc1018495ef2680838c2",
-                "reference": "4dca6af24373eb83aa7fcc1018495ef2680838c2",
+                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/c66d4f3cfcfe0c041c40b38227de1b9a5a106f6c",
+                "reference": "c66d4f3cfcfe0c041c40b38227de1b9a5a106f6c",
                 "shasum": ""
             },
             "require": {
+                "composer/composer": "^1.0",
+                "ext-json": "*",
                 "illuminate/console": "5.6.*|5.7.*|5.8.*|^6.0",
                 "illuminate/container": "5.6.*|5.7.*|5.8.*|^6.0",
                 "illuminate/contracts": "5.6.*|5.7.*|5.8.*|^6.0",
@@ -4928,19 +4930,27 @@
                 "illuminate/pipeline": "5.6.*|5.7.*|5.8.*|^6.0",
                 "illuminate/support": "5.6.*|5.7.*|5.8.*|^6.0",
                 "mockery/mockery": "^1.0|0.9.*",
-                "orchestra/testbench": "^3.6",
                 "php": "^7.1.3",
                 "phpstan/phpstan": "^0.11.15",
                 "symfony/process": "^4.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.3"
+                "orchestra/testbench": "^3.8",
+                "phpunit/phpunit": "^7.3 || ^8.2"
             },
-            "type": "library",
+            "suggest": {
+                "orchestra/testbench": "^3.6"
+            },
+            "type": "phpstan-extension",
             "extra": {
                 "laravel": {
                     "providers": [
                         "NunoMaduro\\Larastan\\LarastanServiceProvider"
+                    ]
+                },
+                "phpstan": {
+                    "includes": [
+                        "extension.neon"
                     ]
                 }
             },
@@ -4970,7 +4980,7 @@
                 "php",
                 "static analysis"
             ],
-            "time": "2019-08-18T21:52:50+00:00"
+            "time": "2019-10-16T12:45:23+00:00"
         },
         {
             "name": "ocramius/package-versions",
@@ -5022,121 +5032,6 @@
             ],
             "description": "Composer plugin that provides efficient querying for installed package versions (no runtime IO)",
             "time": "2019-07-17T15:49:50+00:00"
-        },
-        {
-            "name": "orchestra/testbench",
-            "version": "v3.9.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/orchestral/testbench.git",
-                "reference": "cad74999ceecffff387cc9757cc5c3f84d3b918e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench/zipball/cad74999ceecffff387cc9757cc5c3f84d3b918e",
-                "reference": "cad74999ceecffff387cc9757cc5c3f84d3b918e",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "^6.2",
-                "mockery/mockery": "^1.2",
-                "orchestra/testbench-core": "^3.9.3",
-                "php": ">=7.2",
-                "phpunit/phpunit": "^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.9-dev"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mior Muhammad Zaki",
-                    "email": "crynobone@gmail.com",
-                    "homepage": "https://github.com/crynobone"
-                }
-            ],
-            "description": "Laravel Testing Helper for Packages Development",
-            "homepage": "http://orchestraplatform.com/docs/latest/components/testbench/",
-            "keywords": [
-                "BDD",
-                "TDD",
-                "laravel",
-                "orchestra-platform",
-                "orchestral",
-                "testing"
-            ],
-            "time": "2019-10-11T01:53:54+00:00"
-        },
-        {
-            "name": "orchestra/testbench-core",
-            "version": "v3.9.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/orchestral/testbench-core.git",
-                "reference": "5629cd2fc10cf7262f43d77fe4fc9008ef73b625"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/5629cd2fc10cf7262f43d77fe4fc9008ef73b625",
-                "reference": "5629cd2fc10cf7262f43d77fe4fc9008ef73b625",
-                "shasum": ""
-            },
-            "require": {
-                "fzaninotto/faker": "^1.4",
-                "php": ">=7.2"
-            },
-            "require-dev": {
-                "laravel/framework": "^6.2",
-                "laravel/laravel": "dev-master",
-                "mockery/mockery": "^1.2.3",
-                "phpunit/phpunit": "^8.3"
-            },
-            "suggest": {
-                "laravel/framework": "Required for testing (^6.2).",
-                "mockery/mockery": "Allow to use Mockery for testing (^1.2).",
-                "orchestra/testbench-browser-kit": "Allow to use legacy Laravel BrowserKit for testing (^3.9).",
-                "orchestra/testbench-dusk": "Allow to use Laravel Dusk for testing (^3.9).",
-                "phpunit/phpunit": "Allow to use PHPUnit for testing (^8.0)."
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.9-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Orchestra\\Testbench\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mior Muhammad Zaki",
-                    "email": "crynobone@gmail.com",
-                    "homepage": "https://github.com/crynobone"
-                }
-            ],
-            "description": "Testing Helper for Laravel Development",
-            "homepage": "http://orchestraplatform.com/docs/latest/components/testbench/",
-            "keywords": [
-                "BDD",
-                "TDD",
-                "laravel",
-                "orchestra-platform",
-                "orchestral",
-                "testing"
-            ],
-            "time": "2019-10-11T01:43:51+00:00"
         },
         {
             "name": "phar-io/manifest",
