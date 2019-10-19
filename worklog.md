@@ -13,3 +13,8 @@
 - Users and Accounts should be a many to many relationship, since there can be multiple owners of apartments. Also if we manage their accounts, it would be nice both parties could access them.
 - Transaction date could be done at another time then creation (async), so i would not think created_at updated_at is sufficient.
 - Transaction amount is a double for now, but normally if you would do these kind of money criticial system, an integeger representing the full value would be better. Think how bitcoin and google adwords bids work. So we would never loose number precision.
+
+##### Github issues
+- [Model migration issue](https://github.com/mrhn/Centerplan/issues/1)
+- [CRUD routes](https://github.com/mrhn/Centerplan/issues/2)
+- [Auth](https://github.com/mrhn/Centerplan/issues/3)
