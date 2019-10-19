@@ -27,9 +27,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Account extends Model
 {
-    public function accounts(): BelongsToMany
+    protected $fillable = ['name'];
+
+    public function user(): BelongsToMany
     {
-        return $this->belongsToMany(self::class);
+        return $this->belongsToMany(User::class);
     }
 
     public function transaction(): HasMany

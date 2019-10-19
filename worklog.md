@@ -13,6 +13,8 @@
 - Users and Accounts should be a many to many relationship, since there can be multiple owners of apartments. Also if we manage their accounts, it would be nice both parties could access them.
 - Transaction date could be done at another time then creation (async), so i would not think created_at updated_at is sufficient.
 - Transaction amount is a double for now, but normally if you would do these kind of money criticial system, an integeger representing the full value would be better. Think how bitcoin and google adwords bids work. So we would never loose number precision.
+- Some design choices like services is thinking about bigger scale projects, as right now wrapping Model::delete(1) in a service is quite overkill. But for bigger projects where you need to have similar logics in commands, jobs and controllers quite needed.
+- Going with a jsend style error response and simple array responses for the api.
 
 ##### Github issues
 - [Model migration issue](https://github.com/mrhn/Centerplan/issues/1)

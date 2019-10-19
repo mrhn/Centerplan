@@ -36,6 +36,7 @@ return PhpCsFixer\Config::create()
             'return_assignment' => false,
             // i do not have the time to write custom assertions
             'php_unit_strict' => false,
+            'php_unit_test_class_requires_covers' => false,
         ]
     )
     ->setFinder($finder)
