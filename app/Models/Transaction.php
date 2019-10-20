@@ -40,6 +40,9 @@ class Transaction extends Model
 
     protected $casts = ['amount' => 'float'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function account(): BelongsTo
     {
         return $this->belongsTo(Account::class);
