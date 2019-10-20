@@ -11,6 +11,7 @@ class AccountOwnedScope implements Scope
     public function apply(Builder $builder, Model $model)
     {
         $builder->whereHas('users', function (Builder $builder) {
+            /** @var \App\Models\User $user */
             $user = \Auth::user();
 
             $builder->where('id', $user->id);
