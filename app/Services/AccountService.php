@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
-class AccountService implements ModelServiceContract
+class AccountService extends ModelService
 {
     /**
      * @return \Illuminate\Database\Eloquent\Collection
@@ -41,7 +41,7 @@ class AccountService implements ModelServiceContract
      * @param \App\Models\Account $account
      * @param array               $parameters
      */
-    public function update(Model $account, array $parameters): void
+    public function update(Account $account, array $parameters): void
     {
         $account->fill($parameters);
         $account->save();
@@ -52,7 +52,7 @@ class AccountService implements ModelServiceContract
      *
      * @throws \Exception
      */
-    public function delete(Model $account): void
+    public function delete(Account $account): void
     {
         $account->users()->sync([]);
 

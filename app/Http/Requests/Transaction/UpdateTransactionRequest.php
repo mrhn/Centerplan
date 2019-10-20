@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Transaction;
 
 use App\Enums\TransactionTypes;
 use Illuminate\Foundation\Http\FormRequest;
@@ -36,7 +36,7 @@ class UpdateTransactionRequest extends FormRequest
             'executed_at' => ['date', 'nullable'],
             'description' => ['string', 'max:255'],
             'type' => ['string', new In([TransactionTypes::CREDIT, TransactionTypes::DEBIT])],
-            'amount' => ['numeric'],
+            'amount' => ['numeric', 'min:0'],
         ];
 
         if ('PUT' === $this->getMethod()) {

@@ -7,7 +7,7 @@ use App\Models\Transaction;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
-class TransactionService implements ModelServiceContract
+class TransactionService extends ModelService
 {
     /**
      * @return \Illuminate\Database\Eloquent\Collection
@@ -21,17 +21,13 @@ class TransactionService implements ModelServiceContract
     }
 
     /**
-     * @param array                    $parameters
-     * @param null|\App\Models\Account $account
+     * @param array               $parameters
+     * @param \App\Models\Account $account
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function create(array $parameters, Account $account = null): Model
+    public function create(array $parameters, Account $account): Model
     {
-        if (!$account) {
-            throw new \InvalidArgumentException('Account is required for transaction.');
-        }
-
         $transaction = new Transaction($parameters);
 
         $transaction->account()->associate($account);
@@ -41,21 +37,21 @@ class TransactionService implements ModelServiceContract
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Model $model
-     * @param array                               $parameters
+     * @param \App\Models\Transaction $transaction
+     * @param array                   $parameters
      */
-    public function update(Model $model, array $parameters): void
+    public function update(Transaction $transaction, array $parameters): void
     {
-        $model->fill($parameters);
-        $model->save();
+        $transaction->fill($parameters);
+        $transaction->save();
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Model $transaction
+     * @param \App\Models\Transaction $transaction
      *
      * @throws \Exception
      */
-    public function delete(Model $transaction): void
+    public function delete(Transaction $transaction): void
     {
         $transaction->delete();
     }

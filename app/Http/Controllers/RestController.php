@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ModelServiceContract;
+use App\Services\ModelService;
 use Illuminate\Http\JsonResponse;
 use League\Fractal\TransformerAbstract;
 
@@ -14,7 +14,7 @@ abstract class RestController extends Controller
     protected $transformer;
 
     /**
-     * @var ModelServiceContract
+     * @var \App\Services\ModelService
      */
     protected $service;
 
@@ -22,9 +22,9 @@ abstract class RestController extends Controller
      * RestController constructor.
      *
      * @param \League\Fractal\TransformerAbstract $transformer
-     * @param \App\Services\ModelServiceContract  $service
+     * @param \App\Services\ModelService          $service
      */
-    public function __construct(TransformerAbstract $transformer, ModelServiceContract $service)
+    public function __construct(TransformerAbstract $transformer, ModelService $service)
     {
         $this->transformer = $transformer;
         $this->service = $service;
