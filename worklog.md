@@ -22,7 +22,7 @@
 - Logging as described earlier seems excessive as of the work load with two crud api routes, so skipped and focused on sum and scoping.
 - Account balance will be a large performance hit on a large scale, therefor it's only accessible by default on showing a single account. Can be enabled through query params. The solution is laravel approach, could be performed with raw sql, but as a simple mvp the laravel solution performs two queries instead of one.
 - Account balance query param is quite flakey due to just parsing it to a bool :)
-
+- The handler is very janky but works, overwriting the default model not found and adding a status column as the jsend spec.
 
 ##### Github issues
 - [Model migration issue](https://github.com/mrhn/Centerplan/issues/1)

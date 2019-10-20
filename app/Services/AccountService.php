@@ -32,14 +32,14 @@ class AccountService implements ModelServiceContract
         $user = Auth::user();
 
         $account->save();
-        $account->user()->save($user);
+        $account->users()->save($user);
 
         return $account;
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Model $account
-     * @param array                               $parameters
+     * @param \App\Models\Account $account
+     * @param array               $parameters
      */
     public function update(Model $account, array $parameters): void
     {
@@ -48,12 +48,14 @@ class AccountService implements ModelServiceContract
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Model $account
+     * @param \App\Models\Account $account
      *
      * @throws \Exception
      */
     public function delete(Model $account): void
     {
+        $account->users()->sync([]);
+
         $account->delete();
     }
 }

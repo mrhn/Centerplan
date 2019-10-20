@@ -20,6 +20,12 @@ final class AccountIndexTest extends TestCase
         /** @var \Illuminate\Support\Collection $accounts */
         $accounts = factory(Account::class, 3)->create();
 
+        $accounts->each(function (Account $account) use ($user): void {
+            $account->users()->save($user);
+        });
+
+        $accountsNotOwned = factory(Account::class, 3)->create();
+
         $response = $this->actingAs($user)
             ->json(
                 'GET',
@@ -28,6 +34,8 @@ final class AccountIndexTest extends TestCase
         ;
 
         $response->assertStatus(JsonResponse::HTTP_OK);
+
+        $response->assertJsonCount(3, 'data');
 
         $response->assertJson([
             'data' => $accounts->map(function (Account $account): array {
@@ -43,6 +51,7 @@ final class AccountIndexTest extends TestCase
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create();
+        $user->accounts()->save($account);
 
         // Credit is 7200 and debit is 2700, account balance should be 7200 - 2700 = 4500
         $creditTransactions = factory(Transaction::class, 2)

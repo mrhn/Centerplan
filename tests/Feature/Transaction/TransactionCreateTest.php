@@ -19,6 +19,7 @@ final class TransactionCreateTest extends TestCase
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create();
+        $user->accounts()->save($account);
 
         /** @var \Faker\Generator $faker */
         $faker = app(Faker::class);
@@ -62,6 +63,7 @@ final class TransactionCreateTest extends TestCase
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create();
+        $user->accounts()->save($account);
 
         /** @var \Faker\Generator $faker */
         $faker = app(Faker::class);

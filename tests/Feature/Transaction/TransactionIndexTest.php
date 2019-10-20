@@ -17,7 +17,12 @@ final class TransactionIndexTest extends TestCase
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create();
+        $user->accounts()->save($account);
+
         $transactions = factory(Transaction::class, 3)->create(['account_id' => $account->id]);
+
+        $randomAccount = factory(Account::class)->create();
+        $transactionsNotOwned = factory(Transaction::class, 3)->create(['account_id' => $randomAccount->id]);
 
         $response = $this->actingAs($user)
             ->json(
@@ -27,6 +32,8 @@ final class TransactionIndexTest extends TestCase
         ;
 
         $response->assertStatus(JsonResponse::HTTP_OK);
+
+        $response->assertJsonCount(3, 'data');
 
         $response->assertJson([
             'data' => $transactions->map(function (Transaction $transaction): array {
@@ -45,6 +52,7 @@ final class TransactionIndexTest extends TestCase
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create();
+        $user->accounts()->save($account);
 
         $response = $this->actingAs($user)
             ->json(

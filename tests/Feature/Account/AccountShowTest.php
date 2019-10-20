@@ -18,6 +18,7 @@ final class AccountShowTest extends TestCase
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create();
+        $user->accounts()->save($account);
 
         $response = $this->actingAs($user)
             ->json(
@@ -40,6 +41,7 @@ final class AccountShowTest extends TestCase
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create();
+        $user->accounts()->save($account);
 
         // Credit is 7200 and debit is 2700, account balance should be 7200 - 2700 = 4500
         $creditTransactions = factory(Transaction::class, 2)
