@@ -2,7 +2,9 @@
 
 namespace Tests\Feature\Account;
 
+use App\Enums\TransactionTypes;
 use App\Models\Account;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Tests\TestCase;
@@ -34,6 +36,46 @@ final class AccountIndexTest extends TestCase
                     'name' => $account->name,
                 ];
             })->all(),
+        ]);
+    }
+
+    public function test_index_account_account_balance(): void
+    {
+        $user = factory(User::class)->create();
+        $account = factory(Account::class)->create();
+
+        // Credit is 7200 and debit is 2700, account balance should be 7200 - 2700 = 4500
+        $creditTransactions = factory(Transaction::class, 2)
+            ->create([
+                'type' => TransactionTypes::CREDIT,
+                'account_id' => $account->id,
+                'amount' => 3600,
+            ])
+        ;
+
+        $debitTransactions = factory(Transaction::class, 3)
+            ->create([
+                'type' => TransactionTypes::DEBIT,
+                'account_id' => $account->id,
+                'amount' => 900,
+            ])
+        ;
+
+        $response = $this->actingAs($user)
+            ->json(
+                'GET',
+                route('accounts.index').'?balance=1'
+            )
+        ;
+
+        $response->assertStatus(JsonResponse::HTTP_OK);
+
+        $response->assertJson([
+            'data' => [
+                [
+                    'balance' => 4500,
+                ],
+            ],
         ]);
     }
 

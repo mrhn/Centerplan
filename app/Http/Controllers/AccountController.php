@@ -8,6 +8,7 @@ use App\Http\Transformers\AccountTransformer;
 use App\Models\Account;
 use App\Services\AccountService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 /**
  * Class AccountController.
@@ -27,8 +28,10 @@ class AccountController extends RestController
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
+        $this->transformer->showAccountBalance((bool) $request->query('balance', '0'));
+
         return $this->response($this->service->all());
     }
 
@@ -37,8 +40,10 @@ class AccountController extends RestController
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Account $account): JsonResponse
+    public function show(Request $request, Account $account): JsonResponse
     {
+        $this->transformer->showAccountBalance((bool) $request->query('balance', '1'));
+
         return $this->response($account);
     }
 

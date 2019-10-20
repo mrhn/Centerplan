@@ -64,6 +64,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function accounts(): BelongsToMany
     {
         return $this->belongsToMany(Account::class);
