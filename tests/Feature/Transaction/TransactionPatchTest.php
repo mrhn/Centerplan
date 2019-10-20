@@ -19,6 +19,8 @@ final class TransactionPatchTest extends TestCase
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create();
+        $user->accounts()->save($account);
+
         $transaction = factory(Transaction::class)->create(['account_id' => $account->id]);
 
         /** @var \Faker\Generator $faker */
@@ -59,6 +61,8 @@ final class TransactionPatchTest extends TestCase
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create();
+        $user->accounts()->save($account);
+
         $transaction = factory(Transaction::class)->create(['account_id' => $account->id]);
 
         $response = $this->actingAs($user)
@@ -76,6 +80,8 @@ final class TransactionPatchTest extends TestCase
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create();
+        $user->accounts()->save($account);
+
         $transaction = factory(Transaction::class)->create(['account_id' => $account->id]);
 
         $data = [
@@ -109,6 +115,7 @@ final class TransactionPatchTest extends TestCase
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create();
+        $user->accounts()->save($account);
 
         $response = $this->actingAs($user)->json(
             'PATCH',
@@ -130,6 +137,8 @@ final class TransactionPatchTest extends TestCase
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create();
+        $user->accounts()->save($account);
+
         $transaction = factory(Transaction::class)->create(['account_id' => $account->id]);
 
         $response = $this->actingAs($user)->json(
@@ -150,8 +159,8 @@ final class TransactionPatchTest extends TestCase
 
     public function test_patch_transaction_unauthenticated(): void
     {
-        $user = factory(User::class)->create();
         $account = factory(Account::class)->create();
+
         $transaction = factory(Transaction::class)->create(['account_id' => $account->id]);
 
         $response = $this->json(

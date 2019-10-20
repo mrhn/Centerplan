@@ -16,6 +16,7 @@ final class AccountDeleteTest extends TestCase
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create();
+        $user->accounts()->save($account);
 
         $response = $this->actingAs($user)
             ->json(

@@ -15,8 +15,11 @@ final class TransactionShowTest extends TestCase
 {
     public function test_show_transaction(): void
     {
+        /** @var User $user */
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create();
+        $user->accounts()->save($account);
+
         /** @var Transaction $transaction */
         $transaction = factory(Transaction::class)->create(['account_id' => $account->id]);
 
@@ -46,10 +49,46 @@ final class TransactionShowTest extends TestCase
         ]);
     }
 
+    public function test_show_transaction_not_owned_by_account(): void
+    {
+        /** @var User $user */
+        $user = factory(User::class)->create();
+        $account = factory(Account::class)->create();
+        $user->accounts()->save($account);
+
+        $randomAccount = factory(Account::class)->create();
+
+        /** @var Transaction $transaction */
+        $transaction = factory(Transaction::class)->create(['account_id' => $randomAccount->id]);
+
+        $response = $this->actingAs($user)
+            ->json(
+                'GET',
+                route(
+                    'transactions.show',
+                    [
+                        'account' => $account->id,
+                        'transaction' => $transaction->id,
+                    ]
+                )
+            )
+        ;
+
+        $response->assertStatus(JsonResponse::HTTP_NOT_FOUND);
+
+        $response->assertJson(
+            [
+                'status' => 'fail',
+                'message' => 'Model not found.',
+            ]
+        );
+    }
+
     public function test_show_transaction_not_found(): void
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create();
+        $user->accounts()->save($account);
 
         $response = $this->actingAs($user)
             ->json(
@@ -78,6 +117,8 @@ final class TransactionShowTest extends TestCase
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create();
+        $user->accounts()->save($account);
+
         $transaction = factory(Transaction::class)->create(['account_id' => $account->id]);
 
         $response = $this->actingAs($user)
