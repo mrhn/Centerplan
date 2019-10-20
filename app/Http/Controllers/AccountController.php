@@ -65,7 +65,7 @@ class AccountController extends RestController
      */
     public function update(UpdateAccountRequest $request, Account $account): JsonResponse
     {
-        $params = $this->getUpdateParameters($request);
+        $params = $request->validated();
 
         $this->service->update($account, $params);
 

@@ -14,6 +14,6 @@
 Route::middleware('auth:api')->group(function () {
     Route::apiResources([
         'accounts' => 'AccountController',
-        'transactions' => 'TransactionController',
+        'accounts/{account}/transactions' => 'TransactionController',
     ]);
 });

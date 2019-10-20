@@ -15,6 +15,11 @@
 - Transaction amount is a double for now, but normally if you would do these kind of money criticial system, an integeger representing the full value would be better. Think how bitcoin and google adwords bids work. So we would never loose number precision.
 - Some design choices like services is thinking about bigger scale projects, as right now wrapping Model::delete(1) in a service is quite overkill. But for bigger projects where you need to have similar logics in commands, jobs and controllers quite needed.
 - Going with a jsend style error response and simple array responses for the api.
+- Spec is vague but its quite straight forward to create an crud rest api with api resources so im doing that. Will be usefull down the line.
+- Since Transactions only can exists with accounts im nesting it  in rest, so the url will be accounts/accid/transactions.
+- Date handling in tests is clunky, but waste of time for now.
+- Skipping transaction update test since time has become valuable (focusing on deliverables sum and scoping of transactions and accounts).
+- Logging as described earlier seems excessive as of the work load with two crud api routes, so skipped and focused on sum and scoping.
 
 ##### Github issues
 - [Model migration issue](https://github.com/mrhn/Centerplan/issues/1)

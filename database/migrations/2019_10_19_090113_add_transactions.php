@@ -13,7 +13,7 @@ class AddTransactions extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->dateTime('executed_at');
+            $table->dateTime('executed_at')->nullable();
             $table->string('description');
             $table->string('type');
             $table->double('amount');

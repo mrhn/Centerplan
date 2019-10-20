@@ -37,7 +37,7 @@ final class AccountIndexTest extends TestCase
         ]);
     }
 
-    public function test_show_accounts_empty(): void
+    public function test_index_accounts_empty(): void
     {
         $user = factory(User::class)->create();
 
@@ -55,7 +55,7 @@ final class AccountIndexTest extends TestCase
         ]);
     }
 
-    public function test_show_account_unauthenticated(): void
+    public function test_index_account_unauthenticated(): void
     {
         $response = $this->json(
             'GET',

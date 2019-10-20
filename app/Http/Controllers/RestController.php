@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Services\ModelServiceContract;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
 use League\Fractal\TransformerAbstract;
 
@@ -54,29 +53,5 @@ abstract class RestController extends Controller
     protected function responseNoContent(): JsonResponse
     {
         return new JsonResponse(null, JsonResponse::HTTP_NO_CONTENT);
-    }
-
-    /**
-     * Parameters for PATCH / PUT is different.
-     * A generic way of getting them.
-     * Improvement could a macro for the request object, but type hinting would be awkward.
-     *
-     * @param \Illuminate\Foundation\Http\FormRequest $request
-     *
-     * @return array
-     */
-    protected function getUpdateParameters(FormRequest $request)
-    {
-        $parameters = $request->validated();
-
-        if ('PATCH' === $request->getMethod()) {
-            foreach ($parameters as $key => $value) {
-                if (!$request->json()->has($key)) {
-                    unset($parameters[$key]);
-                }
-            }
-        }
-
-        return $parameters;
     }
 }

@@ -4,7 +4,6 @@ namespace Tests\Feature\Account;
 
 use App\Models\Account;
 use App\Models\User;
-use Faker\Generator as Faker;
 use Illuminate\Http\JsonResponse;
 use Tests\TestCase;
 
@@ -17,10 +16,6 @@ final class AccountDeleteTest extends TestCase
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create();
-
-        /** @var \Faker\Generator $faker */
-        $faker = app(Faker::class);
-        $data = ['name' => $faker->name];
 
         $response = $this->actingAs($user)
             ->json(
