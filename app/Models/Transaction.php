@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * App\Models\Transaction.
  *
  * @property int                             $id
- * @property string                          $executed_at
+ * @property \Carbon\Carbon                  $executed_at
  * @property string                          $description
  * @property string                          $type
  * @property float                           $amount
@@ -34,6 +34,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Transaction extends Model
 {
+    protected $fillable = ['executed_at', 'description', 'type', 'amount'];
+
+    protected $dates = ['executed_at', 'created_at', 'updated_at'];
+
+    protected $casts = ['amount' => 'float'];
+
     public function account(): BelongsTo
     {
         return $this->belongsTo(Account::class);
