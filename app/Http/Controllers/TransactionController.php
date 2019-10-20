@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateTransactionRequest;
+use App\Http\Requests\DeleteTransactionRequest;
+use App\Http\Requests\ShowTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
 use App\Http\Transformers\TransactionTransformer;
 use App\Models\Account;
@@ -34,12 +36,13 @@ class TransactionController extends RestController
     }
 
     /**
-     * @param \App\Models\Account     $account
-     * @param \App\Models\Transaction $transaction
+     * @param \App\Http\Requests\ShowTransactionRequest $request
+     * @param \App\Models\Account                       $account
+     * @param \App\Models\Transaction                   $transaction
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Account $account, Transaction $transaction): JsonResponse
+    public function show(ShowTransactionRequest $request, Account $account, Transaction $transaction): JsonResponse
     {
         return $this->response($transaction);
     }
@@ -83,7 +86,7 @@ class TransactionController extends RestController
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Account $account, Transaction $transaction): JsonResponse
+    public function destroy(DeleteTransactionRequest $request, Account $account, Transaction $transaction): JsonResponse
     {
         $this->service->delete($transaction);
 

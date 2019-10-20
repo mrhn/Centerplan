@@ -38,6 +38,32 @@ final class TransactionDeleteTest extends TestCase
         );
     }
 
+    public function test_delete_transaction_on_wrong_account(): void
+    {
+        $user = factory(User::class)->create();
+        $account = factory(Account::class)->create();
+        $user->accounts()->save($account);
+
+        $randomAccount = factory(Account::class)->create();
+        $randomAccount->users()->save($account);
+
+        $transaction = factory(Transaction::class)->create(['account_id' => $account->id]);
+
+        $response = $this->actingAs($user)
+            ->json(
+                'DELETE',
+                route('transactions.destroy', ['account' => $randomAccount->id, 'transaction' => $transaction->id])
+            )
+        ;
+
+        $response->assertStatus(JsonResponse::HTTP_FORBIDDEN);
+
+        $response->assertJson([
+            'status' => 'fail',
+            'message' => 'This action is unauthorized.',
+        ]);
+    }
+
     public function test_delete_transaction_not_found(): void
     {
         $user = factory(User::class)->create();

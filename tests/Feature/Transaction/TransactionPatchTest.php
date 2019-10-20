@@ -157,6 +157,33 @@ final class TransactionPatchTest extends TestCase
         );
     }
 
+    public function test_patch_transaction_account_not_linked_to_transaction(): void
+    {
+        $user = factory(User::class)->create();
+        $account = factory(Account::class)->create();
+        $user->accounts()->save($account);
+
+        $randomAccount = factory(Account::class)->create();
+        $user->accounts()->save($randomAccount);
+
+        $transaction = factory(Transaction::class)->create(['account_id' => $randomAccount->id]);
+
+        $response = $this->actingAs($user)->json(
+            'PATCH',
+            route('transactions.update', ['account' => $account->id, 'transaction' => $transaction->id]),
+            []
+        );
+
+        $response->assertStatus(JsonResponse::HTTP_FORBIDDEN);
+
+        $response->assertJson(
+            [
+                'status' => 'fail',
+                'message' => 'This action is unauthorized.',
+            ]
+        );
+    }
+
     public function test_patch_transaction_unauthenticated(): void
     {
         $account = factory(Account::class)->create();

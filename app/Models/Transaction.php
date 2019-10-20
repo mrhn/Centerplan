@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property null|\Illuminate\Support\Carbon $created_at
  * @property null|\Illuminate\Support\Carbon $updated_at
  * @property null|string                     $deleted_at
+ * @property \App\Models\Account             $account
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction newQuery()

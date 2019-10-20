@@ -12,6 +12,7 @@ class TransactionOwnedScope implements Scope
     {
         $builder->whereHas('account', function (Builder $builder) {
             $builder->whereHas('users', function (Builder $builder) {
+                /** @var \App\Models\User $user */
                 $user = \Auth::user();
 
                 $builder->where('id', $user->id);

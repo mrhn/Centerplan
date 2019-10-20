@@ -7,7 +7,7 @@
 - For the company's business case, you have the ability to be managed and the user will be the manager and should have built in a impersonate feature i will not consider this.
 - From experience with renting accounting systems, you usually have credited and debited types on transactions i will add that.
 - Users, accounts and transactions should be scoped, so the wrong users and or accounts can't access data they are not allowed too.
-- Most of the solution will be pretty straight forward my biggest concern is logging, which i consider as an audit log, to be able to traverse what users and or accounts have done.
+- Most of the solution will be pretty straight forward my biggest concern is logging, which i consider as an audit log, to be able to traverse what users and or accounts have done. (this was dropped)
 
 ##### Developmment thoughts
 - Users and Accounts should be a many to many relationship, since there can be multiple owners of apartments. Also if we manage their accounts, it would be nice both parties could access them.
@@ -23,6 +23,8 @@
 - Account balance will be a large performance hit on a large scale, therefor it's only accessible by default on showing a single account. Can be enabled through query params. The solution is laravel approach, could be performed with raw sql, but as a simple mvp the laravel solution performs two queries instead of one.
 - Account balance query param is quite flakey due to just parsing it to a bool :)
 - The handler is very janky but works, overwriting the default model not found and adding a status column as the jsend spec.
+- When adding gates/policies it was only necessary on transactions update actions, due to global scopes controlling everything else. The end goal is to secure you can't access relationships you should not.
+
 
 ##### Github issues
 - [Model migration issue](https://github.com/mrhn/Centerplan/issues/1)
