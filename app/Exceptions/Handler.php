@@ -59,9 +59,11 @@ class Handler extends ExceptionHandler
         $response = parent::render($request, $exception);
 
         $content = $response->getOriginalContent();
-        $content['status'] = 500 === $exception->getCode() ? 'error' : 'fail';
 
-        $response->setContent(json_encode($content));
+        if (\is_array($content)) {
+            $content['status'] = 500 === $exception->getCode() ? 'error' : 'fail';
+            $response->setContent(json_encode($content));
+        }
 
         return $response;
     }
