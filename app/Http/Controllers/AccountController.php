@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateAccountRequest;
-use App\Http\Requests\UpdateAccountRequest;
+use App\Http\Requests\Account\CreateAccountRequest;
+use App\Http\Requests\Account\UpdateAccountRequest;
 use App\Http\Transformers\AccountTransformer;
 use App\Models\Account;
 use App\Services\AccountService;
@@ -26,6 +26,8 @@ class AccountController extends RestController
     }
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request): JsonResponse
@@ -36,7 +38,8 @@ class AccountController extends RestController
     }
 
     /**
-     * @param \App\Models\Account $account
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Account      $account
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -48,7 +51,7 @@ class AccountController extends RestController
     }
 
     /**
-     * @param \App\Http\Requests\CreateAccountRequest $request
+     * @param \App\Http\Requests\Account\CreateAccountRequest $request
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -63,8 +66,8 @@ class AccountController extends RestController
     }
 
     /**
-     * @param \App\Http\Requests\UpdateAccountRequest $request
-     * @param \App\Models\Account                     $account
+     * @param \App\Http\Requests\Account\UpdateAccountRequest $request
+     * @param \App\Models\Account                             $account
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -79,6 +82,8 @@ class AccountController extends RestController
 
     /**
      * @param \App\Models\Account $account
+     *
+     * @throws \Exception
      *
      * @return \Illuminate\Http\JsonResponse
      */

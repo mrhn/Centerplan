@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateTransactionRequest;
-use App\Http\Requests\DeleteTransactionRequest;
-use App\Http\Requests\ShowTransactionRequest;
-use App\Http\Requests\UpdateTransactionRequest;
+use App\Http\Requests\Transaction\CreateTransactionRequest;
+use App\Http\Requests\Transaction\DeleteTransactionRequest;
+use App\Http\Requests\Transaction\ShowTransactionRequest;
+use App\Http\Requests\Transaction\UpdateTransactionRequest;
 use App\Http\Transformers\TransactionTransformer;
 use App\Models\Account;
 use App\Models\Transaction;
@@ -36,9 +36,9 @@ class TransactionController extends RestController
     }
 
     /**
-     * @param \App\Http\Requests\ShowTransactionRequest $request
-     * @param \App\Models\Account                       $account
-     * @param \App\Models\Transaction                   $transaction
+     * @param \App\Http\Requests\Transaction\ShowTransactionRequest $request
+     * @param \App\Models\Account                                   $account
+     * @param \App\Models\Transaction                               $transaction
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -48,7 +48,8 @@ class TransactionController extends RestController
     }
 
     /**
-     * @param \App\Http\Requests\CreateTransactionRequest $request
+     * @param \App\Http\Requests\Transaction\CreateTransactionRequest $request
+     * @param \App\Models\Account                                     $account
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -63,9 +64,9 @@ class TransactionController extends RestController
     }
 
     /**
-     * @param \App\Http\Requests\UpdateTransactionRequest $request
-     * @param \App\Models\Account                         $account
-     * @param \App\Models\Transaction                     $transaction
+     * @param \App\Http\Requests\Transaction\UpdateTransactionRequest $request
+     * @param \App\Models\Account                                     $account
+     * @param \App\Models\Transaction                                 $transaction
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -79,8 +80,9 @@ class TransactionController extends RestController
     }
 
     /**
-     * @param \App\Models\Account     $account
-     * @param \App\Models\Transaction $transaction
+     * @param \App\Http\Requests\Transaction\DeleteTransactionRequest $request
+     * @param \App\Models\Account                                     $account
+     * @param \App\Models\Transaction                                 $transaction
      *
      * @throws \Exception
      *
