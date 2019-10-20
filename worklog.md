@@ -30,3 +30,7 @@
 - [Model migration issue](https://github.com/mrhn/Centerplan/issues/1)
 - [CRUD routes](https://github.com/mrhn/Centerplan/issues/2)
 - [Auth](https://github.com/mrhn/Centerplan/issues/3)
+- [Scopes](https://github.com/mrhn/Centerplan/issues/6)
+- [Scopes](https://github.com/mrhn/Centerplan/issues/6)
+- [Sum](https://github.com/mrhn/Centerplan/issues/7)
+- [Cleanup](https://github.com/mrhn/Centerplan/issues/11)
